@@ -1,0 +1,24 @@
+name: Windows exe derle
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Paketleri kur
+        run: pip install -r requirements.txt
+      - name: exe olustur
+        run: pyinstaller --onefile --windowed --name YaziciKamera app.py
+      - name: exe yukle
+        uses: actions/upload-artifact@v4
+        with:
+          name: YaziciKamera-windows
+          path: dist/YaziciKamera.exe
