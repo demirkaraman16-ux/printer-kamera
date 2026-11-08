@@ -1,0 +1,4 @@
+pyserial
+opencv-python-headless
+Pillow
+pyinstaller
